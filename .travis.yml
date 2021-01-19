@@ -21,3 +21,15 @@ after_success:
   - docker push edmaldo/complex-nginx
   - docker push edmaldo/complex-server
   - docker push edmaldo/complex-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "complex-docker"
+  env: "ComplexDocker-env"
+  bucket_name: "elasticbeanstalk-us-east-1-846347732325"
+  bucket_path: "docker-multi"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
